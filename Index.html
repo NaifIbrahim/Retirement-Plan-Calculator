@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retirement Plan Calculator</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            width: 100%;
+            background-color: #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #000000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            box-shadow: 0 2px 5px rgba(82, 82, 82, 0.2);
+            z-index: 1000;
+            padding: 10px 20px;
+            height: 50px;
+        }
+
+        .logo-img {
+            margin-top: 2px;
+            width: 60px;
+            height: 60px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+            margin: 0;
+        }
+
+        .nav-links li a {
+            margin-right: 20px;
+            color: #000000;
+            text-decoration: none;
+        }
+
+        .nav-links li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hamburger Menu Styling */
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                padding: 0;
+                background-color: #e0e0e0;
+                position: absolute;
+                top: 60px;
+                left: 0;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links li a {
+                display: block;
+                padding: 10px;
+                text-align: left;
+            }
+        }
+
+        /* Intro Section Styling */
+        .intro-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0px 20px;
+            margin-bottom: 0px !important;
+            margin-top: 50px;
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+            background: #fff;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        /* Calculator Section Styling */
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 600px;
+            width: 90%;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgb(219, 219, 219);
+        }
+
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            margin-top: 10px;
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 4px 10px rgb(141, 141, 141);
+        }
+
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        h3 {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-section label {
+            display: block;
+            font-size: 16px;
+            margin: 10px 0 5px;
+            color: #555;
+        }
+
+        .form-section input,
+        .form-section select {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .form-section button {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #001AFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-section button:hover {
+            background-color: #0041FF;
+        }
+
+        .reset-button {
+            background-color: #888;
+        }
+
+        .reset-button:hover {
+            background-color: #666;
+        }
+
+        .result-section {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f1f1f1;
+            border-radius: 8px;
+        }
+
+        .result-section p {
+            font-size: 16px;
+            color: #333;
+            margin: 8px 0;
+        }
+
+        .result-section h2 {
+            font-size: 20px;
+            color: black;
+            text-align: center;
+        }
+
+        /* Styling for the gender radio buttons */
+        .gender-selection {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .gender-selection label {
+            font-size: 16px;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
+
+        .gender-selection input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        /* Responsive Styles for Form */
+        @media (max-width: 768px) {
+            .intro-section {
+                margin-top: 50px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <img src="images.jfif" alt="Logo" class="logo-img">
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+        </nav>
+    </header>
+
+    <div class="intro-section">
+        <h1>Plan Your Retirement with Us</h1>
+        <p>
+            Planning for retirement is essential to secure a comfortable and stress-free future. Use our calculator to
+            estimate how much you need to save, factoring in inflation and investment growth, to achieve your ideal
+            retirement lifestyle. Start planning today for the peace of mind tomorrow!
+        </p>
+    </div>
+
+    <div class="container">
+        <h1>Retirement Plan Calculator</h1>
+        <div class="form-section">
+            <h3 style="font-weight: normal;">--- Your Details ---</h3>
+            <!-- Gender Selection at the top of the form -->
+            <div class="gender-selection">
+                <label>
+                    <input type="radio" name="gender" value="male" id="male"> Male
+                </label>
+                <label>
+                    <input type="radio" name="gender" value="female" id="female"> Female
+                </label>
+                <label>
+                    <input type="radio" name="gender" value="other" id="other"> Other
+                </label>
+            </div>
+
+            <label>How old are you?</label>
+            <input type="number" id="currentAge" min="18" max="70" value="25">
+
+            <label>At what age do you plan to retire?</label>
+            <input type="number" id="retirementAge" min="18" max="70" value="65">
+
+            <label>How many years of income do you require during retirement?</label>
+            <input type="number" id="yearsInRetirement" min="1" max="99" value="15">
+
+            <label>Annual Inflation Rate (%)</label>
+            <input type="number" id="inflationRate" value="3">
+
+            <label>Investment Return Rate (%)</label>
+            <input type="number" id="investmentRate" value="4">
+
+            <label>Your Desired Monthly Income at Retirement (S$)</label>
+            <input type="number" id="desiredMonthlyIncome" value="2300">
+
+            <label>Your Existing Savings at Retirement (S$)</label>
+            <input type="number" id="existingProvision" value="5847">
+
+            <div class="button-container">
+                <button onclick="calculateRetirement()">Calculate</button>
+                <button class="reset-button" onclick="resetCalculator()">Reset</button>
+            </div>
+        </div>
+
+        <div class="result-section" id="results"></div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('show');
+        }
+
+        function calculateRetirement() {
+            const currentAge = parseInt(document.getElementById('currentAge').value);
+            const retirementAge = parseInt(document.getElementById('retirementAge').value);
+            const yearsInRetirement = parseInt(document.getElementById('yearsInRetirement').value);
+            const inflationRate = parseFloat(document.getElementById('inflationRate').value) / 100;
+            const investmentRate = parseFloat(document.getElementById('investmentRate').value) / 100;
+            const desiredMonthlyIncome = parseFloat(document.getElementById('desiredMonthlyIncome').value);
+            const existingProvision = parseFloat(document.getElementById('existingProvision').value);
+
+            const yearsToSave = retirementAge - currentAge;
+            const requiredRetirementAmount = desiredMonthlyIncome * 12 * yearsInRetirement;
+            const futureValueOfProvision = existingProvision * Math.pow(1 + investmentRate, yearsToSave);
+            const inflationAdjustedIncome = desiredMonthlyIncome * Math.pow(1 + inflationRate, yearsToSave);
+            const totalShortfall = requiredRetirementAmount - (futureValueOfProvision + inflationAdjustedIncome);
+
+            const monthlySavings = totalShortfall / yearsToSave / 12;
+
+            document.getElementById('results').innerHTML = `
+                <h2>Results</h2>
+                <p><strong>Total amount needed at retirement: </strong> S$ ${requiredRetirementAmount.toFixed(2)}</p>
+                <p><strong>Existing savings at retirement: </strong> S$ ${futureValueOfProvision.toFixed(2)}</p>
+                <p><strong>Total shortfall: </strong> S$ ${totalShortfall.toFixed(2)}</p>
+                <p><strong>Monthly savings required: </strong> S$ ${monthlySavings.toFixed(2)}</p>
+            `;
+        }
+
+        function resetCalculator() {
+            document.getElementById('currentAge').value = 25;
+            document.getElementById('retirementAge').value = 65;
+            document.getElementById('yearsInRetirement').value = 15;
+            document.getElementById('inflationRate').value = 3;
+            document.getElementById('investmentRate').value = 4;
+            document.getElementById('desiredMonthlyIncome').value = 2300;
+            document.getElementById('existingProvision').value = 5847;
+            document.getElementById('results').innerHTML = '';
+        }
+    </script>
+
+</body>
+
+</html>
