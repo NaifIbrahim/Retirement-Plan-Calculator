@@ -306,10 +306,10 @@
             <label>Investment Return Rate (%)</label>
             <input type="number" id="investmentRate" value="4">
 
-            <label>Your Desired Monthly Income at Retirement (S$)</label>
+            <label>Your Desired Monthly Income at Retirement (Rs)</label>
             <input type="number" id="desiredMonthlyIncome" value="2300">
 
-            <label>Your Existing Savings at Retirement (S$)</label>
+            <label>Your Existing Savings at Retirement (Rs)</label>
             <input type="number" id="existingProvision" value="5847">
 
             <div class="button-container">
@@ -346,10 +346,10 @@
 
             document.getElementById('results').innerHTML = `
                 <h2>Results</h2>
-                <p><strong>Total amount needed at retirement: </strong> S$ ${requiredRetirementAmount.toFixed(2)}</p>
-                <p><strong>Existing savings at retirement: </strong> S$ ${futureValueOfProvision.toFixed(2)}</p>
-                <p><strong>Total shortfall: </strong> S$ ${totalShortfall.toFixed(2)}</p>
-                <p><strong>Monthly savings required: </strong> S$ ${monthlySavings.toFixed(2)}</p>
+                <p><strong>Total amount needed at retirement: </strong> Rs: ${requiredRetirementAmount.toFixed(2)}</p>
+                <p><strong>Existing savings at retirement: </strong> Rs: ${futureValueOfProvision.toFixed(2)}</p>
+                <p><strong>Total shortfall: </strong> Rs: ${totalShortfall.toFixed(2)}</p>
+                <p><strong>Monthly savings required: </strong> Rs: ${monthlySavings.toFixed(2)}</p>
             `;
         }
 
