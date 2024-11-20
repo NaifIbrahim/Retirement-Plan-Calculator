@@ -87,9 +87,10 @@
                 padding: 10px;
                 text-align: left;
             }
+
             .logo-img {
-            margin-bottom: 10px;
-        }
+                margin-bottom: 10px;
+            }
         }
 
         /* Intro Section Styling */
@@ -348,12 +349,12 @@
             const monthlySavings = totalShortfall / yearsToSave / 12;
 
             document.getElementById('results').innerHTML = `
-                <h2>Results</h2>
-                <p><strong>Total amount needed at retirement: </strong> Rs: ${requiredRetirementAmount.toFixed(2)}</p>
-                <p><strong>Existing savings at retirement: </strong> Rs: ${futureValueOfProvision.toFixed(2)}</p>
-                <p><strong>Total shortfall: </strong> Rs: ${totalShortfall.toFixed(2)}</p>
-                <p><strong>Monthly savings required: </strong> Rs: ${monthlySavings.toFixed(2)}</p>
-            `;
+        <h2>Results</h2>
+        <p><strong>Total amount needed at retirement: </strong> Rs: ${requiredRetirementAmount.toLocaleString()}</p>
+        <p><strong>Existing savings at retirement: </strong> Rs: ${futureValueOfProvision.toLocaleString()}</p>
+        <p><strong>Total shortfall: </strong> Rs: ${totalShortfall.toLocaleString()}</p>
+        <p><strong>Monthly savings required: </strong> Rs: ${monthlySavings.toLocaleString()}</p>
+    `;
         }
 
         function resetCalculator() {
